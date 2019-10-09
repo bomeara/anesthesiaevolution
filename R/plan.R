@@ -5,5 +5,6 @@ my_plan <- drake_plan(
   aggregate_data = ResolveNames(FixCommonNames(AggregateData(raw_data))),
   aggregate_csv = write.csv(aggregate_data, file=file_out("data/aggregate_data.csv")),
   all_trees = GetTrees(aggregate_data),
-  bullseye_plot = PlotTreeWithTraits(all_trees$otol, aggregate_data)
+  bullseye_plot = PlotTreeWithTraits(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data)),
+  individual_plot = PlotIndividualTraits(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data))
 )

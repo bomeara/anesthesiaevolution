@@ -91,8 +91,14 @@ FixCommonNames <- function(aggregate_data) {
   rownames(aggregate_data)[grepl("Katydid", rownames(aggregate_data))] <- "Pterophylla camellifolia" # Also no further detail, so we are picking a katydid that is commonly encountered
   rownames(aggregate_data)[grepl("Rose chafer", rownames(aggregate_data))] <- "Cetonia aurata"
   rownames(aggregate_data)[grepl("Canus familiaris", rownames(aggregate_data))] <- "Canis familiaris"
+  rownames(aggregate_data)[grepl("Canis familiaris", rownames(aggregate_data))] <- "Canis lupus familiaris" # since OToL via rphylotastic is returning Canis famliaris
+  rownames(aggregate_data)[grepl("Micrococcus lysodeikticus", rownames(aggregate_data))] <- "Micrococcus luteus SK58"
+
   aggregate_data <- aggregate_data[!grepl("coliform", rownames(aggregate_data), ignore.case=TRUE),] # too general
   aggregate_data <- aggregate_data[!grepl("Staphylococcus albus", rownames(aggregate_data), ignore.case=TRUE),] # synonym
+  rownames(aggregate_data)[grepl("Staphylococcus aureus", rownames(aggregate_data))] <- "Staphylococcus aureus subsp. aureus C427"
+  rownames(aggregate_data)[grepl("Streptococcus pneumoniae", rownames(aggregate_data))] <- "Streptococcus pneumoniae G54"
+  rownames(aggregate_data)[grepl("Escherichia coli", rownames(aggregate_data))] <- "Escherichia coli MS 21-1"
   return(aggregate_data)
 }
 
@@ -113,6 +119,46 @@ GetTrees <- function(aggregate_data) {
 
 PlotTreeWithTraits <- function(phy, aggregate_data) {
   pdf(file="plots/bullseye.pdf", width=10, height=10)
-  adephylo::bullseye(phy, aggregate_data, legend=FALSE, traits.inset=1.1)
+  #adephylo::bullseye(phy, aggregate_data, legend=FALSE, traits.inset=1.1)
+  bullseye(phy, aggregate_data, legend=FALSE, circ.n=1, show.tip.label=TRUE, cex=0.9,
+ traits.cex=0.5, open.angle=45, rotate=90)
+
   dev.off()
+}
+
+PlotIndividualTraits <- function(phy, aggregate_data) {
+  phy <- ape::collapse.singles(phy)
+  for (trait_index in sequence(ncol(aggregate_data))) {
+    focal_trait <- aggregate_data[,trait_index]
+    names(focal_trait) <- rownames(aggregate_data)
+    focal_trait <- focal_trait[!is.na(focal_trait)]
+    pruned <- geiger::treedata(phy, focal_trait, warnings=FALSE, sort=TRUE)
+    print(nrow(pruned$data))
+    if(nrow(pruned$data)>2 & length(unique(pruned$data[,1]))>1 ) {
+      pdf(file=paste0("plots/individual_", gsub(" ", "_", colnames(aggregate_data)[trait_index]), ".pdf"), width=10, height=10)
+      simmap.result<-make.simmap(pruned$phy, pruned$data[,1],nsim=100)
+      densityMap(simmap.result,states=c("no effect","effect"),plot=TRUE, main=colnames(aggregate_data)[trait_index])
+      dev.off()
+
+    }
+  }
+}
+
+SanitizeNames <- function(x) {
+  x <- gsub(" ", "_", x)
+  for (i in seq_along(x)) {
+    x[i] <- paste(strsplit(x[i], "_")[[1]][c(1,2)], collapse="_")
+  }
+  x[grepl("Canis", x)] <- "Canis_familiaris"
+  return(x)
+}
+
+SanitizeData <- function(aggregate_data) {
+  rownames(aggregate_data) <- SanitizeNames(rownames(aggregate_data))
+  return(aggregate_data)
+}
+
+SanitizeTree <- function(phy) {
+  phy$tip.label <- SanitizeNames(phy$tip.label)
+  return(phy)
 }

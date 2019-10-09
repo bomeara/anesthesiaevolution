@@ -3,7 +3,7 @@
 "Vallisneria americana",1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
 "Dionaea muscipula",0,NA,NA,0,NA,NA,1,1,NA,NA,NA,0,1,0,1,1,1
 "Felis catus",1,NA,NA,0,1,1,1,1,1,1,NA,1,1,1,1,1,1
-"Canis familiaris",1,NA,NA,0,1,0,NA,1,1,1,NA,1,1,1,1,0,1
+"Canis lupus familiaris",1,NA,NA,0,1,0,NA,1,1,1,NA,1,1,1,1,0,1
 "Papio anubis",NA,NA,NA,1,NA,NA,NA,1,1,NA,NA,NA,1,1,1,NA,1
 "Homo sapiens",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 "Oreochromis niloticus",NA,NA,1,1,NA,1,NA,NA,1,NA,NA,1,1,1,1,1,1
@@ -17,11 +17,11 @@
 "Drosera capensis",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
 "Pseudomonas aeruginosa C",1,1,NA,NA,NA,1,NA,NA,1,1,1,1,1,NA,1,1,1
 "Acinetobacter lwoffii",NA,NA,NA,NA,NA,NA,NA,NA,NA,1,1,NA,1,NA,1,NA,1
-"Staphylococcus aureus",0,NA,NA,NA,1,0,NA,NA,0,NA,0,0,1,1,0,0,0
-"Escherichia coli",1,NA,NA,NA,NA,0,NA,NA,0,NA,NA,1,0,NA,0,0,0
-"Streptococcus pneumoniae",0,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,0,NA,0,NA,0
+"Staphylococcus aureus subsp. aureus C427",0,NA,NA,NA,1,0,NA,NA,0,NA,0,0,1,1,0,0,0
+"Escherichia coli MS 21-1",1,NA,NA,NA,NA,0,NA,NA,0,NA,NA,1,0,NA,0,0,0
+"Streptococcus pneumoniae G54",0,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,0,NA,0,NA,0
 "Bacillus licheniformis",NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,NA,1,1,NA
-"Micrococcus lysodeikticus",0,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,0,1,NA,1,1,NA
+"Micrococcus luteus SK58",0,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,0,1,NA,1,1,NA
 "Candida albicans",1,1,NA,NA,NA,NA,NA,NA,1,NA,NA,1,1,NA,1,NA,1
 "Petaurus breviceps",NA,NA,NA,1,NA,NA,NA,NA,1,NA,NA,NA,1,1,1,NA,1
 "Macropus giganteus",NA,NA,NA,1,1,1,NA,NA,1,NA,NA,NA,1,1,1,1,1
