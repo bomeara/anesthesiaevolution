@@ -162,3 +162,25 @@ SanitizeTree <- function(phy) {
   phy$tip.label <- SanitizeNames(phy$tip.label)
   return(phy)
 }
+
+RunCorHMM <- function(phy, aggregate_data) {
+  phy <- ape::collapse.singles(phy)
+  trait_results <- list()
+  for (trait_index in sequence(ncol(aggregate_data))) {
+    focal_trait <- data.frame(Taxon=rownames(aggregate_data), Trait=aggregate_data[,trait_index], stringsAsFactors=FALSE)
+    focal_trait <- focal_trait[!is.na(focal_trait$Trait),]
+    phy_focal <- phy
+    to_cull <- phy$tip.label[!phy$tip.label %in% focal_trait$Taxon]
+    if(length(to_cull)>0) {
+      phy_focal <- ape::drop.tip(phy, to_cull)
+    }
+    rates <- c(1:4)
+    corHMM_results <- list()
+    for (i in seq_along(rates)) {
+      corHMM_results[[i]] <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=rates[i], node.states="marginal")
+    }
+    trait_results[[trait_index]] <- corHMM_results
+    names(trait_results[[trait_index]]) <- colnames(aggregate_data)[trait_index]
+  }
+  return(trait_results)
+}
