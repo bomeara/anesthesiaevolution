@@ -167,6 +167,7 @@ RunCorHMM <- function(phy, aggregate_data) {
   phy <- ape::collapse.singles(phy)
   trait_results <- list()
   for (trait_index in sequence(ncol(aggregate_data))) {
+    print(paste0("trait is ", trait_index, " ", colnames(aggregate_data)[trait_index]))
     focal_trait <- data.frame(Taxon=rownames(aggregate_data), Trait=aggregate_data[,trait_index], stringsAsFactors=FALSE)
     focal_trait <- focal_trait[!is.na(focal_trait$Trait),]
     phy_focal <- phy
@@ -177,8 +178,25 @@ RunCorHMM <- function(phy, aggregate_data) {
     rates <- c(1:4)
     corHMM_results <- list()
     for (i in seq_along(rates)) {
-      corHMM_results[[i]] <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=rates[i], node.states="marginal")
+      local_result <- NA
+      try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=rates[i], node.states="marginal", root.p="maddfitz"))
+      corHMM_results[[i]] <- local_result
     }
+
+
+    local_result <- NA
+    rate.mat <- corHMM::rate.mat.maker(hrm=TRUE,rate.cat=1)
+    rate.mat<-rate.par.drop(rate.mat,c(1))
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, rate.mat=rate.mat, node.states="marginal", root.p="maddfitz"))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
+
+    local_result <- NA
+    rate.mat <- corHMM::rate.mat.maker(hrm=TRUE,rate.cat=1)
+    rate.mat<-rate.par.drop(rate.mat,c(2))
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, rate.mat=rate.mat, node.states="marginal", root.p="maddfitz"))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
+
+
     trait_results[[trait_index]] <- corHMM_results
     names(trait_results[[trait_index]]) <- colnames(aggregate_data)[trait_index]
   }
