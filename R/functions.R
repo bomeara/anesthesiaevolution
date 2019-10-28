@@ -175,7 +175,7 @@ RunCorHMM <- function(phy, aggregate_data) {
     if(length(to_cull)>0) {
       phy_focal <- ape::drop.tip(phy, to_cull)
     }
-    rates <- c(1:4)
+    rates <- c(1:2)
     corHMM_results <- list()
     for (i in seq_along(rates)) {
       local_result <- NA
