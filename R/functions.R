@@ -205,3 +205,16 @@ RunCorHMM <- function(phy, aggregate_data) {
   }
   return(trait_results)
 }
+
+PlotCorHMM <- function(corhmm_results) {
+  for(trait in seq_along(corhmm_results)) {
+    print(trait)
+    trait_name <- names(corhmm_results[[trait]][1])
+    best_model <- unname(which.min(unlist(lapply(corhmm_results[[trait]], "[", "AICc"))))[1]
+    if(!any(is.na(corhmm_results[[trait]][[1]]))) {
+      pdf(file=paste0("plots/corhmm_", gsub(" ", "_", trait_name), ".pdf"), width=10, height=10)
+      try(corHMM::plotRECON(corhmm_results[[trait]][[best_model]]$phy, corhmm_results[[trait]][[best_model]]$states))
+      dev.off()
+    }
+  }
+}

@@ -7,5 +7,6 @@ my_plan <- drake_plan(
   all_trees = GetTrees(aggregate_data),
   bullseye_plot = PlotTreeWithTraits(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data)),
   individual_plot = PlotIndividualTraits(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data)),
-  corhmm_results = RunCorHMM(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data))
+  corhmm_results = RunCorHMM(SanitizeTree(all_trees$otol), SanitizeData(aggregate_data)),
+  corhmm_plots = PlotCorHMM(corhmm_results)
 )
