@@ -1,31 +1,31 @@
-"","lidocaine","procaine","benzocaine","ketamine","propofol","halothane","chloroform","diethyl.ether","isoflurane","sevoflurane","nitrous.oxide","local","general","intravenous","volatile","hydrcarbon","ethers"
-"Mimosa pudica",1,NA,NA,0,NA,1,1,1,NA,1,NA,1,1,0,1,1,1
-"Vallisneria americana",1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
-"Dionaea muscipula",0,NA,NA,0,NA,NA,1,1,NA,NA,NA,0,1,0,1,1,1
-"Felis catus",1,NA,NA,0,1,1,1,1,1,1,1,1,1,1,1,1,1
-"Canis lupus familiaris",1,NA,NA,0,1,0,NA,1,1,1,NA,1,1,1,1,0,1
-"Papio anubis",NA,NA,NA,1,NA,NA,NA,1,1,NA,1,NA,1,1,1,NA,1
-"Homo sapiens",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-"Oreochromis niloticus",NA,NA,1,1,NA,1,NA,NA,1,NA,NA,1,1,1,1,1,1
-"Rattus norvegicus",1,1,NA,1,NA,1,NA,NA,1,1,NA,1,1,1,1,1,1
-"Scutigera coleoptrata",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
-"Pterophylla camellifolia",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
-"Cetonia aurata",NA,NA,NA,NA,NA,NA,0,1,NA,NA,NA,NA,1,NA,1,0,1
-"Mycobacterium phlei",0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA
-"Pisum sativum",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
-"Lepidium sativum",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
-"Drosera capensis",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,1,NA,1,NA,1
-"Pseudomonas aeruginosa C",1,1,NA,NA,NA,1,NA,NA,1,1,1,1,1,NA,1,1,1
-"Acinetobacter lwoffii",NA,NA,NA,NA,NA,NA,NA,NA,NA,1,1,NA,1,NA,1,NA,1
-"Staphylococcus aureus subsp. aureus C427",0,NA,NA,NA,1,1,NA,NA,0,NA,0,0,1,1,1,1,0
-"Escherichia coli MS 21-1",1,NA,NA,NA,NA,0,NA,NA,0,NA,NA,1,0,NA,0,0,0
-"Streptococcus pneumoniae G54",0,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,0,NA,0,NA,0
-"Bacillus licheniformis",NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,NA,1,1,NA
-"Micrococcus luteus SK58",0,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,0,1,NA,1,1,NA
-"Candida albicans",1,1,NA,NA,NA,NA,NA,NA,1,NA,NA,1,1,NA,1,NA,1
-"Petaurus breviceps",NA,NA,NA,1,NA,NA,NA,NA,1,NA,NA,NA,1,1,1,NA,1
-"Macropus giganteus",NA,NA,NA,1,1,1,NA,NA,1,NA,NA,NA,1,1,1,1,1
-"Pteropus hypomelanus",NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,0,0,NA,NA,NA
-"Saccharomyces cerevisiae",NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,1,NA,1,NA,1
-"Caenorhabditis elegans",NA,NA,NA,NA,NA,1,NA,NA,1,NA,NA,NA,1,NA,1,1,1
-"Drosophila melanogaster",NA,NA,NA,NA,NA,1,1,1,NA,NA,1,NA,1,NA,1,1,1
+"","any","local","general","intravenous","volatile","hydrocarbon","ethers","lidocaine","procaine","benzocaine","ketamine","propofol","halothane","chloroform","diethyl.ether","isoflurane","sevoflurane","nitrous.oxide"
+"Mimosa pudica",1,1,1,0,1,1,1,1,NA,NA,0,NA,1,1,1,NA,1,NA
+"Vallisneria americana",1,1,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Dionaea muscipula",1,0,1,0,1,1,1,0,NA,NA,0,NA,NA,1,1,NA,NA,NA
+"Felis catus",1,1,1,1,1,1,1,1,NA,NA,0,1,1,1,1,1,1,1
+"Canis lupus familiaris",1,1,1,1,1,0,1,1,NA,NA,0,1,0,NA,1,1,1,NA
+"Papio anubis",1,NA,1,1,1,NA,1,NA,NA,NA,1,NA,NA,NA,1,1,NA,1
+"Homo sapiens",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Oreochromis niloticus",1,1,1,1,1,1,1,NA,NA,1,1,NA,1,NA,NA,1,NA,NA
+"Rattus norvegicus",1,1,1,1,1,1,1,1,1,NA,1,NA,1,NA,NA,1,1,NA
+"Scutigera coleoptrata",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
+"Pterophylla camellifolia",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
+"Cetonia aurata",1,NA,1,NA,1,0,1,NA,NA,NA,NA,NA,NA,0,1,NA,NA,NA
+"Mycobacterium phlei",0,0,NA,NA,NA,NA,NA,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Pisum sativum",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
+"Lepidium sativum",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
+"Drosera capensis",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,NA
+"Pseudomonas aeruginosa C",1,1,1,NA,1,1,1,1,1,NA,NA,NA,1,NA,NA,1,1,1
+"Acinetobacter lwoffii",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,1
+"Staphylococcus aureus subsp. aureus C427",1,0,1,1,1,1,0,0,NA,NA,NA,1,1,NA,NA,0,NA,0
+"Escherichia coli MS 21-1",1,1,0,NA,0,0,0,1,NA,NA,NA,NA,0,NA,NA,0,NA,NA
+"Streptococcus pneumoniae G54",0,0,0,NA,0,NA,0,0,NA,NA,NA,NA,NA,NA,NA,0,NA,NA
+"Bacillus licheniformis",1,NA,1,NA,1,1,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
+"Micrococcus luteus SK58",1,0,1,NA,1,1,NA,0,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
+"Candida albicans",1,1,1,NA,1,NA,1,1,1,NA,NA,NA,NA,NA,NA,1,NA,NA
+"Petaurus breviceps",1,NA,1,1,1,NA,1,NA,NA,NA,1,NA,NA,NA,NA,1,NA,NA
+"Macropus giganteus",1,NA,1,1,1,1,1,NA,NA,NA,1,1,1,NA,NA,1,NA,NA
+"Pteropus hypomelanus",0,NA,0,0,NA,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA
+"Saccharomyces cerevisiae",1,NA,1,NA,1,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA
+"Caenorhabditis elegans",1,NA,1,NA,1,1,1,NA,NA,NA,NA,NA,1,NA,NA,1,NA,NA
+"Drosophila melanogaster",1,NA,1,NA,1,1,1,NA,NA,NA,NA,NA,1,1,1,NA,NA,1

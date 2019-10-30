@@ -19,6 +19,7 @@ AggregateData <- function(raw_data) {
   raw_data$volatile <- NA
   raw_data$hydrcarbon <- NA
   raw_data$ethers <- NA
+  raw_data$any <- 0
   for (species.index in sequence(nrow(raw_data))) {
     local.df <- raw_data[species.index, grepl("caine", colnames(raw_data))]
     if(any(local.df==1, na.rm=TRUE)) {
@@ -27,6 +28,9 @@ AggregateData <- function(raw_data) {
       if(any(local.df==0, na.rm=TRUE)) {
         raw_data$local[species.index] <- 0
       }
+    }
+    if(any(raw_data[species.index,]==1, na.rm=TRUE)) {
+      raw_data$any[species.index] <- 1
     }
   }
 
@@ -84,6 +88,8 @@ AggregateData <- function(raw_data) {
     }
   }
 
+  colnames(raw_data) <- tolower(gsub("hydrcarbon", "hydrocarbon", colnames(raw_data)))
+  raw_data <- raw_data[,c("any", "local", "general", "intravenous", "volatile", "hydrocarbon", "ethers", "lidocaine", "procaine", "benzocaine", "ketamine", "propofol", "halothane", "chloroform", "diethyl.ether", "isoflurane", "sevoflurane", "nitrous.oxide")]
   return(raw_data)
 }
 
@@ -123,9 +129,17 @@ GetTrees <- function(aggregate_data) {
 PlotTreeWithTraits <- function(phy, aggregate_data) {
   pdf(file="plots/bullseye.pdf", width=10, height=10)
   #adephylo::bullseye(phy, aggregate_data, legend=FALSE, traits.inset=1.1)
-  bullseye(phy, aggregate_data, legend=FALSE, circ.n=1, show.tip.label=TRUE, cex=0.9,
- traits.cex=0.5, open.angle=45, rotate=90)
+  bullseye(phy, aggregate_data, legend=FALSE, circ.n=1, show.tip.label=TRUE, cex=0.5,
+ traits.cex=1, open.angle=45, rotate=90)
+  dev.off()
+  print("Made bullseye")
+}
 
+PlotPhyloHeatmap <- function(phy, aggregate_data) {
+  pdf(file="plots/phyloheatmap.pdf", width=10, height=10)
+  traits <- SanitizeData(aggregate_data)
+  traits[is.na(traits)] <- 0.5
+  phytools::phylo.heatmap(phy, traits, colors=c("blue", "white", "red"), fsize=0.6, legend=FALSE)
   dev.off()
 }
 
@@ -142,6 +156,7 @@ PlotIndividualTraits <- function(phy, aggregate_data) {
       simmap.result<-make.simmap(pruned$phy, pruned$data[,1],nsim=100)
       densityMap(simmap.result,states=c("no effect","effect"),plot=TRUE, main=colnames(aggregate_data)[trait_index])
       dev.off()
+      print(paste0("Made ", colnames(aggregate_data)[trait_index]))
 
     }
   }
@@ -186,6 +201,13 @@ RunCorHMM <- function(phy, aggregate_data) {
       corHMM_results[[i]] <- local_result
     }
 
+    local_result <- NA
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, node.states="marginal", root.p=c(1,0)))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
+
+    local_result <- NA
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, node.states="marginal", root.p=c(0,1)))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
 
     local_result <- NA
     rate.mat <- corHMM::rate.mat.maker(hrm=TRUE,rate.cat=1)
@@ -198,6 +220,19 @@ RunCorHMM <- function(phy, aggregate_data) {
     rate.mat<-rate.par.drop(rate.mat,c(2))
     try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, rate.mat=rate.mat, node.states="marginal", root.p="maddfitz"))
     corHMM_results[[length(corHMM_results)+1]] <- local_result
+
+    local_result <- NA
+    rate.mat <- corHMM::rate.mat.maker(hrm=TRUE,rate.cat=1)
+    rate.mat<-rate.par.drop(rate.mat,c(1))
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, rate.mat=rate.mat, node.states="marginal", root.p=c(1,0)))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
+
+    local_result <- NA
+    rate.mat <- corHMM::rate.mat.maker(hrm=TRUE,rate.cat=1)
+    rate.mat<-rate.par.drop(rate.mat,c(2))
+    try(local_result <- corHMM::corHMM(phy_focal, focal_trait, rate.cat=1, rate.mat=rate.mat, node.states="marginal", root.p=c(0,1)))
+    corHMM_results[[length(corHMM_results)+1]] <- local_result
+
 
 
     trait_results[[trait_index]] <- corHMM_results
