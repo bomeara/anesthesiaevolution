@@ -1,8 +1,11 @@
 GetData <- function() {
-  raw_data <- read.csv("data/EffectsChart.csv", stringsAsFactors=FALSE, row.names=1)
+  raw_data <- read.csv("data/EffectsChart.csv", stringsAsFactors=FALSE, row.names=NULL)
   colnames(raw_data)[grepl("nitrous",colnames(raw_data))] <- "nitrous.oxide"
   raw_data <- raw_data[,-ncol(raw_data)] # deleting empty final column
   colnames(raw_data) <- tolower(colnames(raw_data))
+  raw_data <- raw_data[nchar(raw_data[,1])>1,]
+  rownames(raw_data) <- trimws(raw_data[,1], which="both")
+  raw_data <- raw_data[,-1]
   return(raw_data)
 }
 
@@ -104,7 +107,7 @@ FixCommonNames <- function(aggregate_data) {
 
 ResolveNames <- function(aggregate_data) {
   for(i in sequence(nrow(aggregate_data))) {
-    rownames(aggregate_data)[i] <- rphylotastic::taxa_resolve_names_with_otol(rownames(aggregate_data)[i])
+    try(rownames(aggregate_data)[i] <- rphylotastic::taxa_resolve_names_with_otol(rownames(aggregate_data)[i]))
   }
   return(aggregate_data)
 }
